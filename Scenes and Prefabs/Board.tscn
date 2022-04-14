@@ -118,4 +118,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="gui_input" from="TopSectionContainer/NewItemText" to="." method="_on_NewItemText_gui_input"]
 [connection signal="pressed" from="TopSectionContainer/AddItemButotn" to="." method="_on_AddItemButotn_pressed"]

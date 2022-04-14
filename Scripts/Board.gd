@@ -38,16 +38,7 @@ func _ready() -> void:
 		
 
 func _on_AddItemButotn_pressed():
-	var created_item = new_item.instance()
-	created_item.text_to_show = $TopSectionContainer/NewItemText.text
-	created_item.id = id
-	created_item.connect("item_deleted", self, "update_data")
-	id += 1
-	
-	global_data.global_id = id
-	save_board_data()
-	
-	$Containers/ScrollContainer/NotFinishedContainer.add_child(created_item)
+	create_item()
 
 func save_board_data():
 	var f = File.new()
@@ -59,3 +50,21 @@ func update_data():
 	id -= 1
 	global_data.global_id = id
 	save_board_data()
+
+
+func _on_NewItemText_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		create_item()
+		
+func create_item():
+	var created_item = new_item.instance()
+	created_item.text_to_show = $TopSectionContainer/NewItemText.text
+	$TopSectionContainer/NewItemText.text = ""
+	created_item.id = id
+	created_item.connect("item_deleted", self, "update_data")
+	id += 1
+	
+	global_data.global_id = id
+	save_board_data()
+	
+	$Containers/ScrollContainer/NotFinishedContainer.add_child(created_item)

@@ -23,6 +23,11 @@ This project is written in GDScript, a very human friendly language so if you wa
     <li>Everything about this piece of software including what is was made with is open source.</li>
 </ul>
 
+# Roadmap
+1. More than one board
+2. A Android App
+3. File Sync using HTTP
+
 # What this software was made with:
 <ul>
     <li><a href="https://pop.system76.com/">System76's Pop!_OS</a></li>
