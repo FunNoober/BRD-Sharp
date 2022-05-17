@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/NewItem.gd" type="Script" id=1]
+
+[node name="NewItem" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="Contents" type="Label" parent="."]
+margin_top = 293.0
+margin_right = 833.0
+margin_bottom = 307.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+
+[node name="MoveButton" type="Button" parent="."]
+margin_left = 837.0
+margin_right = 884.0
+margin_bottom = 600.0
+text = "Move"
+
+[node name="OpenButton" type="Button" parent="."]
+margin_left = 888.0
+margin_right = 965.0
+margin_bottom = 600.0
+text = "Open Link"
+
+[node name="DeleteButton" type="Button" parent="."]
+margin_left = 969.0
+margin_right = 1024.0
+margin_bottom = 600.0
+text = "Delete"
+
+[connection signal="pressed" from="MoveButton" to="." method="_on_MoveButton_pressed"]
+[connection signal="pressed" from="OpenButton" to="." method="_on_OpenButton_pressed"]
+[connection signal="pressed" from="DeleteButton" to="." method="_on_DeleteButton_pressed"]
