@@ -12,7 +12,8 @@ var data_to_store = {
 }
 
 onready var new_item = load("res://assets/prefabs/NewItem.tscn")
-var cur_index : int
+onready var todo_column = get_node("VBoxContainer/Columns/ToDoColumnScrollContainer/ToDoColumn")
+var cur_index : int = 0
 
 func _ready() -> void:
 	var d = Directory.new()
@@ -28,8 +29,8 @@ func _ready() -> void:
 		items_id_array = data_to_store.items_id_array
 		cur_index = data_to_store.cur_index
 		
-		for i in range($VBoxContainer/Columns/ToDoColumn.get_child_count()):
-			$VBoxContainer/Columns/ToDoColumn.get_child(i).queue_free()
+		for i in range(todo_column.get_child_count()):
+			todo_column.get_child(i).queue_free()
 		for i in range($VBoxContainer/Columns/DoneColumn.get_child_count()):
 			$VBoxContainer/Columns/DoneColumn.get_child(i).queue_free()
 		
@@ -37,8 +38,9 @@ func _ready() -> void:
 			var loc_i = create_new_item(items_name_array[i], false)
 			loc_i.index = items_id_array[i]
 			if items_complete_array[i] == false:
+				print(i)
 				loc_i.is_done = false
-				$VBoxContainer/Columns/ToDoColumn.add_child(loc_i)
+				todo_column.add_child(loc_i)
 			else:
 				loc_i.is_done = true
 				$VBoxContainer/Columns/DoneColumn.add_child(loc_i)
@@ -46,12 +48,12 @@ func _ready() -> void:
 func create_new_item(contents, should_append):
 	var i = new_item.instance()
 	i.get_node("Contents").text = contents
+	i.index = cur_index
 	if should_append == true:
-		cur_index += 1
 		items_name_array.append(contents)
 		items_complete_array.append(i.is_done)
 		items_id_array.append(cur_index)
-	i.index = cur_index
+		cur_index += 1
 	$VBoxContainer/HBoxContainer/NewItemText.text = ''
 	save()
 	i.connect("move_request", self, "recieve_move_request")
@@ -60,7 +62,7 @@ func create_new_item(contents, should_append):
 
 func _on_AddItemButton_pressed() -> void:
 	var loc_i = create_new_item($VBoxContainer/HBoxContainer/NewItemText.text, true)
-	$VBoxContainer/Columns/ToDoColumn.add_child(loc_i)
+	todo_column.add_child(loc_i)
 	
 func save():
 	data_to_store.items_complete_array = items_complete_array
@@ -74,25 +76,25 @@ func save():
 
 func recieve_move_request(status, id, object):
 	if status == true:
-		items_complete_array[id-1] = false
+		items_complete_array[id] = false
 		object.is_done = false
 		$VBoxContainer/Columns/DoneColumn.remove_child(object)
-		$VBoxContainer/Columns/ToDoColumn.add_child(object)
+		todo_column.add_child(object)
 	if status == false:
-		items_complete_array[id-1] = true
+		items_complete_array[id] = true
 		object.is_done = true
-		$VBoxContainer/Columns/ToDoColumn.remove_child(object)
+		todo_column.remove_child(object)
 		$VBoxContainer/Columns/DoneColumn.add_child(object)
 	save()
 	pass
 
 func recieve_delete_request(id, object):
-	items_complete_array.pop_at(id-1)
-	items_name_array.pop_at(id-1)
-	items_id_array.pop_at(id-1)
+	print(id)
+	
 	cur_index -= 1
-	for i in range(len(items_id_array)):
-		items_id_array[i] -= 1
-	object.queue_free()
+	items_id_array.erase(id)
+	items_complete_array.erase(object.is_done)
+	items_name_array.erase(object.get_node('Contents').text)
 	save()
+	object.queue_free()
 	pass

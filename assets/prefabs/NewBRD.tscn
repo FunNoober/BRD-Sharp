@@ -35,7 +35,13 @@ margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToDoColumn" type="VBoxContainer" parent="VBoxContainer/Columns"]
+[node name="ToDoColumnScrollContainer" type="ScrollContainer" parent="VBoxContainer/Columns"]
+margin_right = 510.0
+margin_bottom = 576.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ToDoColumn" type="VBoxContainer" parent="VBoxContainer/Columns/ToDoColumnScrollContainer"]
 margin_right = 510.0
 margin_bottom = 576.0
 rect_pivot_offset = Vector2( -454, 111 )
