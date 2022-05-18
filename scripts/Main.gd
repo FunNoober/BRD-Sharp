@@ -10,6 +10,7 @@ onready var BRD_PREFAB = load("res://assets/prefabs/NewBRD.tscn")
 const brd_main_path = "user://main.brds"
 
 func _ready() -> void:
+	
 	var d = Directory.new()
 	if d.file_exists(brd_main_path):
 		var f = File.new()
