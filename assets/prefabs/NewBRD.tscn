@@ -23,6 +23,7 @@ margin_bottom = 32.0
 margin_right = 1001.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
+placeholder_text = "Item contents"
 
 [node name="AddItemButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 1005.0

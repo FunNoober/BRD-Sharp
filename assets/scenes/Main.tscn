@@ -26,6 +26,7 @@ margin_right = 1001.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+placeholder_text = "BRD Title"
 
 [node name="AddBRDButton" type="Button" parent="MainContainer/TopMainBar"]
 margin_left = 1005.0
