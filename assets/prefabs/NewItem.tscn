@@ -11,27 +11,29 @@ theme = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="Contents" type="Label" parent="."]
-margin_right = 845.0
-margin_bottom = 27.0
+margin_right = 796.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
+valign = 1
+clip_text = true
 
 [node name="MoveButton" type="Button" parent="."]
-margin_left = 849.0
-margin_right = 893.0
-margin_bottom = 27.0
+margin_left = 800.0
+margin_right = 859.0
+margin_bottom = 32.0
 text = "Move"
 
 [node name="OpenButton" type="Button" parent="."]
-margin_left = 897.0
-margin_right = 973.0
-margin_bottom = 27.0
+margin_left = 863.0
+margin_right = 955.0
+margin_bottom = 32.0
 text = "Open Link"
 
 [node name="DeleteButton" type="Button" parent="."]
-margin_left = 977.0
+margin_left = 959.0
 margin_right = 1024.0
-margin_bottom = 27.0
+margin_bottom = 32.0
 text = "Delete"
 
 [connection signal="pressed" from="MoveButton" to="." method="_on_MoveButton_pressed"]

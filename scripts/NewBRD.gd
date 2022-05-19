@@ -13,6 +13,7 @@ var data_to_store = {
 
 onready var new_item = load("res://assets/prefabs/NewItem.tscn")
 onready var todo_column = get_node("VBoxContainer/Columns/ToDoColumnScrollContainer/ToDoColumn")
+onready var done_column = get_node("VBoxContainer/Columns/DoneColumnScrollContainer/DoneColumn")
 var cur_index : int = 0
 
 func _ready() -> void:
@@ -31,8 +32,8 @@ func _ready() -> void:
 		
 		for i in range(todo_column.get_child_count()):
 			todo_column.get_child(i).queue_free()
-		for i in range($VBoxContainer/Columns/DoneColumn.get_child_count()):
-			$VBoxContainer/Columns/DoneColumn.get_child(i).queue_free()
+		for i in range(done_column.get_child_count()):
+			done_column.get_child(i).queue_free()
 		
 		for i in range(len(items_name_array)):
 			var loc_i = create_new_item(items_name_array[i], false)
@@ -43,7 +44,7 @@ func _ready() -> void:
 				todo_column.add_child(loc_i)
 			else:
 				loc_i.is_done = true
-				$VBoxContainer/Columns/DoneColumn.add_child(loc_i)
+				done_column.add_child(loc_i)
 			
 func create_new_item(contents, should_append):
 	var i = new_item.instance()
@@ -78,13 +79,13 @@ func recieve_move_request(status, id, object):
 	if status == true:
 		items_complete_array[id] = false
 		object.is_done = false
-		$VBoxContainer/Columns/DoneColumn.remove_child(object)
+		done_column.remove_child(object)
 		todo_column.add_child(object)
 	if status == false:
 		items_complete_array[id] = true
 		object.is_done = true
 		todo_column.remove_child(object)
-		$VBoxContainer/Columns/DoneColumn.add_child(object)
+		done_column.add_child(object)
 	save()
 	pass
 

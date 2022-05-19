@@ -24,9 +24,8 @@ This project is written in GDScript, a very human friendly language so if you wa
 </ul>
 
 # Roadmap
-1. Better Theming
-2. A Android App
-3. File Sync using HTTP
+1. A Android App
+2. File Sync using HTTP
 
 # What this software was made with:
 <ul>
