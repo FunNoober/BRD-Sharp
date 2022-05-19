@@ -20,3 +20,8 @@ func _on_OpenButton_pressed() -> void:
 
 func _on_DeleteButton_pressed() -> void:
 	emit_signal("delete_request", index, self)
+
+
+func _on_Contents_pressed() -> void:
+	$ConfirmationDialog.popup()
+	$ConfirmationDialog.dialog_text = $Contents.text
