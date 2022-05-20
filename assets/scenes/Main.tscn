@@ -10,6 +10,10 @@ background_color = Color( 0.0627451, 0.0784314, 0.121569, 1 )
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
@@ -18,40 +22,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="TopMainBar" type="HBoxContainer" parent="MainContainer"]
-margin_right = 1024.0
+margin_right = 974.0
 margin_bottom = 32.0
 
 [node name="NewBRDText" type="LineEdit" parent="MainContainer/TopMainBar"]
-margin_right = 1001.0
+margin_right = 951.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "BRD Title"
 
 [node name="AddBRDButton" type="Button" parent="MainContainer/TopMainBar"]
-margin_left = 1005.0
-margin_right = 1024.0
+margin_left = 955.0
+margin_right = 974.0
 margin_bottom = 32.0
 size_flags_vertical = 3
 text = "+"
 
 [node name="BRDTabs" type="TabContainer" parent="MainContainer"]
 margin_top = 36.0
-margin_right = 1024.0
-margin_bottom = 556.0
+margin_right = 974.0
+margin_bottom = 506.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tab_align = 0
 drag_to_rearrange_enabled = true
 
 [node name="ColorBlindFriendlyButton" type="CheckButton" parent="MainContainer"]
-margin_top = 560.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 510.0
+margin_right = 974.0
+margin_bottom = 550.0
 text = "Colorblind Friendly/Ultra Dark"
 
 [node name="Camera" type="Camera" parent="."]
 environment = SubResource( 1 )
 
+[connection signal="text_entered" from="MainContainer/TopMainBar/NewBRDText" to="." method="_on_NewBRDText_text_entered"]
 [connection signal="pressed" from="MainContainer/TopMainBar/AddBRDButton" to="." method="_on_AddBRDButton_pressed"]
 [connection signal="pressed" from="MainContainer/ColorBlindFriendlyButton" to="." method="_on_ColorBlindFriendlyButton_pressed"]

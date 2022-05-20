@@ -77,6 +77,7 @@ margin_right = 673.0
 margin_bottom = 269.0
 dialog_text = "Are you sure?"
 
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/NewItemText" to="." method="_on_NewItemText_text_entered"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/AddItemButton" to="." method="_on_AddItemButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/DeleteBRDButton" to="." method="_on_DeleteBRDButton_pressed"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]

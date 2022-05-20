@@ -110,3 +110,8 @@ func _on_ConfirmationDialog_confirmed() -> void:
 	var dir = Directory.new()
 	dir.remove("user://" + self.name + ".brd")
 	emit_signal("delete_request", self, self.name)
+
+
+func _on_NewItemText_text_entered(new_text: String) -> void:
+	var loc_i = create_new_item($VBoxContainer/HBoxContainer/NewItemText.text, true)
+	todo_column.add_child(loc_i)

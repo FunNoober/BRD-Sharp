@@ -23,6 +23,7 @@ func _ready() -> void:
 		for i in range(len(brd_name_array)):
 			var b = BRD_PREFAB.instance()
 			b.set_name(brd_name_array[i])
+			b.connect("delete_request", self, 'recieve_delete_request')
 			$MainContainer/BRDTabs.add_child(b)
 			
 	
@@ -58,3 +59,13 @@ func recieve_delete_request(object, name):
 	brd_name_array.erase(name)
 	save()
 	object.queue_free()
+
+
+func _on_NewBRDText_text_entered(new_text: String) -> void:
+	var b = BRD_PREFAB.instance()
+	b.set_name($MainContainer/TopMainBar/NewBRDText.text)
+	brd_name_array.append($MainContainer/TopMainBar/NewBRDText.text)
+	b.connect("delete_request", self, 'recieve_delete_request')
+	$MainContainer/BRDTabs.add_child(b)
+	$MainContainer/TopMainBar/NewBRDText.text = ''
+	save()
