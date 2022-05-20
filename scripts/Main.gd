@@ -30,6 +30,7 @@ func _on_AddBRDButton_pressed() -> void:
 	var b = BRD_PREFAB.instance()
 	b.set_name($MainContainer/TopMainBar/NewBRDText.text)
 	brd_name_array.append($MainContainer/TopMainBar/NewBRDText.text)
+	b.connect("delete_request", self, 'recieve_delete_request')
 	$MainContainer/BRDTabs.add_child(b)
 	$MainContainer/TopMainBar/NewBRDText.text = ''
 	save()
@@ -51,3 +52,9 @@ func set_colorblind_theme():
 
 func _on_ColorBlindFriendlyButton_pressed() -> void:
 	set_colorblind_theme()
+
+func recieve_delete_request(object, name):
+	print(name)
+	brd_name_array.erase(name)
+	save()
+	object.queue_free()

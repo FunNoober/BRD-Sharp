@@ -32,19 +32,19 @@ text = "+"
 [node name="Columns" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 28.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ToDoColumnScrollContainer" type="ScrollContainer" parent="VBoxContainer/Columns"]
 margin_right = 510.0
-margin_bottom = 572.0
+margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ToDoColumn" type="VBoxContainer" parent="VBoxContainer/Columns/ToDoColumnScrollContainer"]
 margin_right = 510.0
-margin_bottom = 572.0
+margin_bottom = 548.0
 rect_pivot_offset = Vector2( -454, 111 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -52,15 +52,31 @@ size_flags_vertical = 3
 [node name="DoneColumnScrollContainer" type="ScrollContainer" parent="VBoxContainer/Columns"]
 margin_left = 514.0
 margin_right = 1024.0
-margin_bottom = 572.0
+margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="DoneColumn" type="VBoxContainer" parent="VBoxContainer/Columns/DoneColumnScrollContainer"]
 margin_right = 510.0
-margin_bottom = 572.0
+margin_bottom = 548.0
 rect_pivot_offset = Vector2( -454, 111 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="DeleteBRDButton" type="Button" parent="VBoxContainer"]
+margin_top = 580.0
+margin_right = 1024.0
+margin_bottom = 600.0
+text = "Delete BRD"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+visible = true
+margin_left = 473.0
+margin_top = 199.0
+margin_right = 673.0
+margin_bottom = 269.0
+dialog_text = "Are you sure?"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/AddItemButton" to="." method="_on_AddItemButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/DeleteBRDButton" to="." method="_on_DeleteBRDButton_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]

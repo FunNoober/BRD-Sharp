@@ -16,6 +16,8 @@ onready var todo_column = get_node("VBoxContainer/Columns/ToDoColumnScrollContai
 onready var done_column = get_node("VBoxContainer/Columns/DoneColumnScrollContainer/DoneColumn")
 var cur_index : int = 0
 
+signal delete_request(object, name)
+
 func _ready() -> void:
 	var d = Directory.new()
 	if d.file_exists("user://" + name + ".brd"):
@@ -99,3 +101,13 @@ func recieve_delete_request(id, object):
 	save()
 	object.queue_free()
 	pass
+
+
+func _on_DeleteBRDButton_pressed() -> void:
+	$ConfirmationDialog.popup()
+
+
+func _on_ConfirmationDialog_confirmed() -> void:
+	var dir = Directory.new()
+	dir.remove("user://" + self.name + ".brd")
+	emit_signal("delete_request", self, self.name)
