@@ -50,7 +50,7 @@ func _ready() -> void:
 			
 func create_new_item(contents, should_append):
 	var i = new_item.instance()
-	i.get_node("Contents").text = contents
+	i.get_node("ScrollContainer/Contents").text = contents
 	i.index = cur_index
 	if should_append == true:
 		items_name_array.append(contents)
@@ -92,12 +92,11 @@ func recieve_move_request(status, id, object):
 	pass
 
 func recieve_delete_request(id, object):
-	print(id)
 	
 	cur_index -= 1
 	items_id_array.erase(id)
 	items_complete_array.erase(object.is_done)
-	items_name_array.erase(object.get_node('Contents').text)
+	items_name_array.erase(object.get_node('ScrollContainer/Contents').text)
 	save()
 	object.queue_free()
 	pass
