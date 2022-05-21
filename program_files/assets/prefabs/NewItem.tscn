@@ -11,39 +11,39 @@ size_flags_horizontal = 3
 script = ExtResource( 1 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_right = 629.0
+margin_right = 405.0
 margin_bottom = 92.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Contents" type="Button" parent="ScrollContainer"]
-margin_right = 629.0
+margin_right = 405.0
 margin_bottom = 92.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MoveButton" type="Button" parent="."]
-margin_left = 633.0
-margin_right = 680.0
+margin_left = 409.0
+margin_right = 456.0
 margin_bottom = 92.0
 text = "Move"
 
 [node name="OpenButton" type="Button" parent="."]
-margin_left = 684.0
-margin_right = 761.0
+margin_left = 460.0
+margin_right = 537.0
 margin_bottom = 92.0
 text = "Open Link"
 
 [node name="DeleteButton" type="Button" parent="."]
-margin_left = 765.0
-margin_right = 820.0
+margin_left = 541.0
+margin_right = 596.0
 margin_bottom = 92.0
 text = "Delete"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 visible = true
-margin_left = 824.0
-margin_right = 1024.0
+margin_left = 600.0
+margin_right = 800.0
 margin_bottom = 92.0
 popup_exclusive = true
 window_title = "Selected Text"
