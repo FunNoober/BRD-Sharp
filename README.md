@@ -1,38 +1,32 @@
-# What is this?
-Project-BRD is a piece of free and open source software designed for project management. This piece of software is heavily inspired by freemium services such as Trello as this software uses a card and board layout similar to Trello Project-BRD has several advantages over services like Trello.
+If you are viewing this on Itch.io, then please be warned that the screenshots are dangerously out of date. I will try to get them updated soon!
 
-# FAQ
-## What is the difference betwene Godello and your project?
-My project does not require a server to set up. Godello is made with the Phoenix and Elixir frameworks while mine is written in plain GDScript.
+### Introduction
+Project-BRD is an open source personal project management software made in the Godot Game Engine. We collect absolutely zero data and all files are stored locally on your machine. You can use this software to plan your personal projects using a board and card layout. This layout is efficient for quickly visualizing the progression of tasks.
 
-## How do I set this up?
-Download the zip file from the releases section in Github or from the Itch.io page. Extract the zip and click run.
+## Pros and Const of Using Project-BRD
 
-## How can I ensure you don't collect data?
-This project is written in GDScript, a very human friendly language so if you want, you can dive into the code for yourself.
+### What This Software Is Good At
+Project-BRD is good at managing personal projects. In the current version of Project-BRD there are almost no collaboration features making it hard for multiple people to work on the same project. This software is good at managing personal projects as you can quickly visualize your progression.
 
-# Reasons to use this software over freemium project managment services:
-<ul>
-    <li><h3>1. It respects your freedom.</h3></li>
-    <li>No account needed and completely offline ensures you and your data can be safe.</li>
-    <li><h3>2. No signup required.</h3></li>
-    <li>No signup required means we have no idea who you are.</li>
-    <li><h3>3. Completely offline.</h3></li>
-    <li>Download the binaries and it just works. No online verfication required.</li>
-    <li><h3>4. 100% Open source.</h3></li>
-    <li>Everything about this piece of software including what is was made with is open source.</li>
-</ul>
+### What This Software Is Bad At
+This software is not without it's flaws. There are certain things this project is simply not the best at. One of those things is real time collaboration. There currently are no feature support for real time collaboration but that should hopefully be coming in the feature! This software is not good for storing notes or creating flow charts.
 
-# Roadmap
-1. A Android App
-2. File Sync using HTTP
+### Privacy And Data
+Simple, we do not collect, store, or sell users' personal data. No sign-up or account creation required. That is pretty much. The only feature of the device that is needed is access to your filesystem. Without the filesystem, the program would fail to work as it stores your to-do data on your machine. It is possible that feature versions would also need internet permissions.
 
-# What this software was made with:
-<ul>
-    <li><a href="https://pop.system76.com/">System76's Pop!_OS</a></li>
-    <li><a href="https://godotengine.org/">Godot Game Engine</a></li>
-    <li><a href="https://krita.org/en/">Krita for Artwork</a></li>
-</ul>
+## More Information About The Software
 
-# External Links
-<a href="https://github.com/FunNoober/Project-BRD">Project's GitHub</a>
+### What Inspired This Software?
+There are many freemium services out there that do something similar to what this program does. The only difference is that this software does not require an account and does not hide features behind a paywall. The only limitations for the amount of boards you can have is how much disk space you have. I also did not like having to remember a password to simply access a to-do list. This program fixes that as it is completely offline with no sign-up required.
+
+### What Is Next for Project-BRD?
+I hope to get many more features into the software such as realtime collaboration that I have been repeatability mentioning. I also wish to improve the note taking and mind mapping side of the app turning it into something that could actually compete with larger, more enterprise solutions.
+
+### How can you support this software?
+You can support this software various ways but one of the biggest, is to use the software yourself, and create bug reports. This keeps Project-BRD on top of the competition and makes it a better experience for everybody. I am not currently taking donations.
+
+### External Links:
+[Project-BRD Github](https://github.com/FunNoober/Project-BRD) \
+[Project-BRD ItchIo](https://fun-noober.itch.io/project-brd) \
+[Fun Noober's Youtube Channel](https://www.youtube.com/c/funnoobercodingforbeginners) \
+[Fun Noober's Twitter](https://twitter.com/fun_noober)
