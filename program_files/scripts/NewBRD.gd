@@ -2,12 +2,14 @@ extends Tabs
 
 var items_name_array = []
 var items_complete_array = []
+var items_description_array = []
 var items_id_array = []
 
 var data_to_store = {
 	'items_complete_array' : items_complete_array,
 	'items_name_array' : items_name_array,
 	'items_id_array' : items_id_array,
+	'items_description_array' : items_description_array,
 	'cur_index' : cur_index
 }
 
@@ -30,6 +32,7 @@ func _ready() -> void:
 		items_name_array = data_to_store.items_name_array
 		items_complete_array = data_to_store.items_complete_array
 		items_id_array = data_to_store.items_id_array
+		items_description_array = data_to_store.items_description_array
 		cur_index = data_to_store.cur_index
 		
 		for i in range(todo_column.get_child_count()):
@@ -40,8 +43,8 @@ func _ready() -> void:
 		for i in range(len(items_name_array)):
 			var loc_i = create_new_item(items_name_array[i], false)
 			loc_i.index = items_id_array[i]
+			loc_i.description = items_description_array[i]
 			if items_complete_array[i] == false:
-				print(i)
 				loc_i.is_done = false
 				todo_column.add_child(loc_i)
 			else:
@@ -50,14 +53,17 @@ func _ready() -> void:
 			
 func create_new_item(contents, should_append):
 	var i = new_item.instance()
-	i.get_node("ScrollContainer/Contents").text = contents
+	i.get_node("Control/ScrollContainer/Contents").text = contents
+	i.description = $VBoxContainer/HBoxContainer2/NewDecriptionText.text
 	i.index = cur_index
 	if should_append == true:
 		items_name_array.append(contents)
 		items_complete_array.append(i.is_done)
 		items_id_array.append(cur_index)
+		items_description_array.append(i.description)
 		cur_index += 1
 	$VBoxContainer/HBoxContainer/NewItemText.text = ''
+	$VBoxContainer/HBoxContainer2/NewDecriptionText.text = ''
 	save()
 	i.connect("move_request", self, "recieve_move_request")
 	i.connect("delete_request", self, "recieve_delete_request")
@@ -71,6 +77,7 @@ func save():
 	data_to_store.items_complete_array = items_complete_array
 	data_to_store.items_name_array = items_name_array
 	data_to_store.items_id_array = items_id_array
+	data_to_store.items_description_array = items_description_array
 	data_to_store.cur_index = cur_index
 	var f = File.new()
 	f.open("user://" + name + ".brd", f.WRITE)
@@ -96,7 +103,8 @@ func recieve_delete_request(id, object):
 	cur_index -= 1
 	items_id_array.erase(id)
 	items_complete_array.erase(object.is_done)
-	items_name_array.erase(object.get_node('ScrollContainer/Contents').text)
+	items_name_array.erase(object.get_node('Control/ScrollContainer/Contents').text)
+	items_description_array.erase(object.description)
 	save()
 	object.queue_free()
 	pass
@@ -113,5 +121,10 @@ func _on_ConfirmationDialog_confirmed() -> void:
 
 
 func _on_NewItemText_text_entered(new_text: String) -> void:
+	var loc_i = create_new_item($VBoxContainer/HBoxContainer/NewItemText.text, true)
+	todo_column.add_child(loc_i)
+
+
+func _on_NewDecriptionText_text_entered(new_text: String) -> void:
 	var loc_i = create_new_item($VBoxContainer/HBoxContainer/NewItemText.text, true)
 	todo_column.add_child(loc_i)

@@ -22,26 +22,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="TopMainBar" type="HBoxContainer" parent="MainContainer"]
-margin_right = 750.0
+margin_right = 974.0
 margin_bottom = 32.0
 
 [node name="NewBRDText" type="LineEdit" parent="MainContainer/TopMainBar"]
-margin_right = 728.0
+margin_right = 952.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "BRD Title"
 
 [node name="AddBRDButton" type="Button" parent="MainContainer/TopMainBar"]
-margin_left = 732.0
-margin_right = 750.0
+margin_left = 956.0
+margin_right = 974.0
 margin_bottom = 32.0
 size_flags_vertical = 3
 text = "+"
 
 [node name="BRDTabs" type="TabContainer" parent="MainContainer"]
 margin_top = 36.0
-margin_right = 750.0
+margin_right = 974.0
 margin_bottom = 506.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -50,7 +50,7 @@ drag_to_rearrange_enabled = true
 
 [node name="ColorBlindFriendlyButton" type="CheckButton" parent="MainContainer"]
 margin_top = 510.0
-margin_right = 750.0
+margin_right = 974.0
 margin_bottom = 550.0
 text = "Colorblind Friendly/Ultra Dark"
 

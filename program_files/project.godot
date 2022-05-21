@@ -21,7 +21,6 @@ ColorBlindFriendly="*res://ColorBlindFriendly.gd"
 
 [display]
 
-window/size/width=800
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="expand"

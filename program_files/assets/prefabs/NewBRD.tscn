@@ -18,19 +18,30 @@ margin_right = 1024.0
 margin_bottom = 24.0
 
 [node name="NewItemText" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Item Name"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 1024.0
+margin_bottom = 52.0
+
+[node name="NewDecriptionText" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
 margin_right = 1000.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-placeholder_text = "Item contents"
+placeholder_text = "Item Description"
 
-[node name="AddItemButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="AddItemButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 1004.0
 margin_right = 1024.0
 margin_bottom = 24.0
 text = "+"
 
 [node name="Columns" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 28.0
+margin_top = 56.0
 margin_right = 1024.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
@@ -38,13 +49,13 @@ size_flags_vertical = 3
 
 [node name="ToDoColumnScrollContainer" type="ScrollContainer" parent="VBoxContainer/Columns"]
 margin_right = 510.0
-margin_bottom = 548.0
+margin_bottom = 520.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ToDoColumn" type="VBoxContainer" parent="VBoxContainer/Columns/ToDoColumnScrollContainer"]
 margin_right = 510.0
-margin_bottom = 548.0
+margin_bottom = 520.0
 rect_pivot_offset = Vector2( -454, 111 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -52,13 +63,13 @@ size_flags_vertical = 3
 [node name="DoneColumnScrollContainer" type="ScrollContainer" parent="VBoxContainer/Columns"]
 margin_left = 514.0
 margin_right = 1024.0
-margin_bottom = 548.0
+margin_bottom = 520.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="DoneColumn" type="VBoxContainer" parent="VBoxContainer/Columns/DoneColumnScrollContainer"]
 margin_right = 510.0
-margin_bottom = 548.0
+margin_bottom = 520.0
 rect_pivot_offset = Vector2( -454, 111 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -70,7 +81,6 @@ margin_bottom = 600.0
 text = "Delete BRD"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-visible = true
 margin_left = 473.0
 margin_top = 199.0
 margin_right = 673.0
@@ -78,6 +88,7 @@ margin_bottom = 269.0
 dialog_text = "Are you sure?"
 
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/NewItemText" to="." method="_on_NewItemText_text_entered"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/AddItemButton" to="." method="_on_AddItemButton_pressed"]
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer2/NewDecriptionText" to="." method="_on_NewDecriptionText_text_entered"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/AddItemButton" to="." method="_on_AddItemButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/DeleteBRDButton" to="." method="_on_DeleteBRDButton_pressed"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
