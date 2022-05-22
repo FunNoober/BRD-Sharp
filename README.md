@@ -1,5 +1,3 @@
-If you are viewing this on Itch.io, then please be warned that the screenshots are dangerously out of date. I will try to get them updated soon!
-
 ### Introduction
 Project-BRD is an open source personal project management software made in the Godot Game Engine. We collect absolutely zero data and all files are stored locally on your machine. You can use this software to plan your personal projects using a board and card layout. This layout is efficient for quickly visualizing the progression of tasks.
 
