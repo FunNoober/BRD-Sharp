@@ -13,6 +13,8 @@ onready var new_item = load("res://assets/prefabs/NewToDoItem.tscn")
 
 signal delete_request(object, name)
 
+var type = 2
+
 func _ready() -> void:
 	var d = Directory.new()
 	if d.file_exists("user://" + name + ".brdchecklist"):
@@ -72,7 +74,7 @@ func handle_task_state_changed(index, is_done, new_string):
 
 func _on_ConfirmationDialog_confirmed() -> void:
 	var dir = Directory.new()
-	dir.remove("user://" + self.name + ".brd")
+	dir.remove("user://" + self.name + ".brdchecklist")
 	emit_signal("delete_request", self, self.name)
 
 func _on_NewToDoText_text_entered(new_text: String) -> void:

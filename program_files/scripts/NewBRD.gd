@@ -18,6 +18,8 @@ onready var todo_column = get_node("VBoxContainer/Columns/ToDoColumnScrollContai
 onready var done_column = get_node("VBoxContainer/Columns/DoneColumnScrollContainer/DoneColumn")
 var cur_index : int = 0
 
+var type = 1
+
 signal delete_request(object, name)
 
 func _ready() -> void:

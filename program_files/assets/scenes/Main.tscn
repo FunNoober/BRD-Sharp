@@ -44,7 +44,7 @@ margin_left = 877.0
 margin_right = 974.0
 margin_bottom = 32.0
 text = "Starndard"
-items = [ "Starndard", null, false, 0, null, "Checklist", null, false, 1, null ]
+items = [ "Starndard", null, false, 0, null, "Checklist", null, false, 1, null, "Notes", null, false, 2, null ]
 selected = 0
 
 [node name="BRDTabs" type="TabContainer" parent="MainContainer"]
@@ -56,11 +56,25 @@ size_flags_vertical = 3
 tab_align = 0
 drag_to_rearrange_enabled = true
 
-[node name="ColorBlindFriendlyButton" type="CheckButton" parent="MainContainer"]
+[node name="BottomToolBar" type="HBoxContainer" parent="MainContainer"]
 margin_top = 510.0
 margin_right = 974.0
 margin_bottom = 550.0
+
+[node name="ColorBlindFriendlyButton" type="CheckButton" parent="MainContainer/BottomToolBar"]
+margin_right = 485.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Colorblind Friendly/Ultra Dark"
+
+[node name="PeerIPAddress" type="LineEdit" parent="MainContainer/BottomToolBar"]
+margin_left = 489.0
+margin_right = 974.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "Peer IP Address"
 
 [node name="Camera" type="Camera" parent="."]
 environment = SubResource( 1 )
@@ -68,4 +82,4 @@ environment = SubResource( 1 )
 [connection signal="text_entered" from="MainContainer/TopMainBar/NewBRDText" to="." method="_on_NewBRDText_text_entered"]
 [connection signal="pressed" from="MainContainer/TopMainBar/AddBRDButton" to="." method="_on_AddBRDButton_pressed"]
 [connection signal="item_selected" from="MainContainer/TopMainBar/TypeButton" to="." method="_on_TypeButton_item_selected"]
-[connection signal="pressed" from="MainContainer/ColorBlindFriendlyButton" to="." method="_on_ColorBlindFriendlyButton_pressed"]
+[connection signal="pressed" from="MainContainer/BottomToolBar/ColorBlindFriendlyButton" to="." method="_on_ColorBlindFriendlyButton_pressed"]
