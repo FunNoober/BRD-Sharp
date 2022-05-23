@@ -24,7 +24,6 @@ func _ready() -> void:
 		items_name_array = data_to_store.items_array
 		cur_index = data_to_store.cur_index
 		for i in range (len(items_name_array)):
-			#ToDo: When instancing in new items on ready, set their bbcode to the correct thing as well
 			var loc_i = create_new_item(items_name_array[i], false)
 			$Items/Items.add_child(loc_i)
 			save()
@@ -67,8 +66,6 @@ func handle_task_state_changed(index, is_done, new_string):
 		items_name_array.append(new_string)
 	if is_done == false:
 		var new_loc_string = "[s]" + new_string + "[s]"
-		
-		print(new_loc_string)
 		items_name_array.erase(new_loc_string)
 		items_name_array.append(new_string.replace("[s]", ""))
 	save()

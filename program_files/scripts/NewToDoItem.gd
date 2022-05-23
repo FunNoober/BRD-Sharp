@@ -8,7 +8,8 @@ signal delete_request(index, object)
 signal task_state_change(index, is_done, new_string)
 
 func _ready() -> void:
-	$Label.bbcode_text = $Label.bbcode_text.replace("[s]", "")
+	if $Label.bbcode_text.find("[s]") != -1:
+		$MarkAsDoneBox.set_pressed_no_signal(true)
 
 func _on_MarkAsDoneBox_toggled(button_pressed: bool) -> void:
 	new_string = $Label.bbcode_text
