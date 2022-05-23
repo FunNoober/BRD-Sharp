@@ -99,7 +99,6 @@ func recieve_move_request(status, id, object):
 	pass
 
 func recieve_delete_request(id, object):
-	
 	cur_index -= 1
 	items_id_array.erase(id)
 	items_complete_array.erase(object.is_done)

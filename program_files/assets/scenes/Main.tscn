@@ -26,18 +26,26 @@ margin_right = 974.0
 margin_bottom = 32.0
 
 [node name="NewBRDText" type="LineEdit" parent="MainContainer/TopMainBar"]
-margin_right = 952.0
+margin_right = 851.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "BRD Title"
 
 [node name="AddBRDButton" type="Button" parent="MainContainer/TopMainBar"]
-margin_left = 956.0
-margin_right = 974.0
+margin_left = 855.0
+margin_right = 873.0
 margin_bottom = 32.0
 size_flags_vertical = 3
 text = "+"
+
+[node name="TypeButton" type="OptionButton" parent="MainContainer/TopMainBar"]
+margin_left = 877.0
+margin_right = 974.0
+margin_bottom = 32.0
+text = "Starndard"
+items = [ "Starndard", null, false, 0, null, "Checklist", null, false, 1, null ]
+selected = 0
 
 [node name="BRDTabs" type="TabContainer" parent="MainContainer"]
 margin_top = 36.0
@@ -59,4 +67,5 @@ environment = SubResource( 1 )
 
 [connection signal="text_entered" from="MainContainer/TopMainBar/NewBRDText" to="." method="_on_NewBRDText_text_entered"]
 [connection signal="pressed" from="MainContainer/TopMainBar/AddBRDButton" to="." method="_on_AddBRDButton_pressed"]
+[connection signal="item_selected" from="MainContainer/TopMainBar/TypeButton" to="." method="_on_TypeButton_item_selected"]
 [connection signal="pressed" from="MainContainer/ColorBlindFriendlyButton" to="." method="_on_ColorBlindFriendlyButton_pressed"]
