@@ -28,3 +28,6 @@ You can support this software various ways but one of the biggest, is to use the
 [Project-BRD ItchIo](https://fun-noober.itch.io/project-brd) \
 [Fun Noober's Youtube Channel](https://www.youtube.com/c/funnoobercodingforbeginners) \
 [Fun Noober's Twitter](https://twitter.com/fun_noober)
+
+### Other Things
+Just to clarify, the name of the program is pronounced, Project Board. Not to get confused with ProjectBoard from ProjectBoard.com. The "BRD" in the name is the actual name of the actual project and the "Project" part is because this is an open source project.
