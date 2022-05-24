@@ -62,13 +62,14 @@ margin_right = 974.0
 margin_bottom = 550.0
 
 [node name="ColorBlindFriendlyButton" type="CheckButton" parent="MainContainer/BottomToolBar"]
-margin_right = 485.0
+margin_right = 974.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Colorblind Friendly/Ultra Dark"
 
 [node name="PeerIPAddress" type="LineEdit" parent="MainContainer/BottomToolBar"]
+visible = false
 margin_left = 489.0
 margin_right = 974.0
 margin_bottom = 40.0

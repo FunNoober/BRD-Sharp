@@ -15,6 +15,19 @@ onready var notes_item = load("res://assets/prefabs/NewNotesItem.tscn")
 
 var type = 3
 
+func _ready() -> void:
+	var d = Directory.new()
+	if d.file_exists("user://" + name + ".brdnotes"):
+		var f = File.new()
+		var contents_as_string = f.get_as_text()
+		var contents_as_dictionary = parse_json(contents_as_string)
+		data_to_store = contents_as_dictionary
+		items_content_array = data_to_store.items_content_array
+		cur_index = data_to_store.cur_index
+		for i in range(len(items_content_array)):
+			var loc_i = create_item(items_content_array[i], false)
+			$Items/ScrollContainer/Items.add_child(loc_i)
+
 func _on_DeleteBRDButton_pressed() -> void:
 	$ConfirmationDialog.popup()
 
@@ -36,7 +49,7 @@ func create_item(contents, should_append):
 func create_note_ui():
 	var loc_n = create_item($Items/TopBar/NewNoteText.text, true)
 	$Items/TopBar/NewNoteText.text = ""
-	$Items/Items.add_child(loc_n)
+	$Items/ScrollContainer/Items.add_child(loc_n)
 	
 func _on_NewNoteText_text_entered(new_text: String) -> void:
 	create_note_ui()
