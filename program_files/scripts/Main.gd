@@ -36,7 +36,6 @@ func _ready() -> void:
 			create_checklist_brd(false, checklist_name_array[i])
 		for i in range(len(notes_name_array)):
 			create_notes_brd(false, notes_name_array[i])
-			
 	
 func _on_AddBRDButton_pressed() -> void:
 	if type == 0:
@@ -74,7 +73,6 @@ func create_notes_brd(should_append, name):
 	b.connect("delete_request", self, "recieve_delete_request")
 	$MainContainer/BRDTabs.add_child(b)
 	$MainContainer/TopMainBar/NewBRDText.text = ''
-	save()
 
 func save():
 	data_to_store.brd_name_array = brd_name_array

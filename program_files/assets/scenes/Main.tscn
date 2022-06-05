@@ -77,6 +77,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 placeholder_text = "Peer IP Address"
 
+[node name="HostServer" type="Button" parent="MainContainer/BottomToolBar"]
+visible = false
+margin_left = 881.0
+margin_right = 928.0
+margin_bottom = 40.0
+text = "Host"
+
+[node name="JoinRoom" type="Button" parent="MainContainer/BottomToolBar"]
+visible = false
+margin_left = 932.0
+margin_right = 974.0
+margin_bottom = 40.0
+text = "Join"
+
 [node name="Camera" type="Camera" parent="."]
 environment = SubResource( 1 )
 
@@ -84,3 +98,5 @@ environment = SubResource( 1 )
 [connection signal="pressed" from="MainContainer/TopMainBar/AddBRDButton" to="." method="_on_AddBRDButton_pressed"]
 [connection signal="item_selected" from="MainContainer/TopMainBar/TypeButton" to="." method="_on_TypeButton_item_selected"]
 [connection signal="pressed" from="MainContainer/BottomToolBar/ColorBlindFriendlyButton" to="." method="_on_ColorBlindFriendlyButton_pressed"]
+[connection signal="pressed" from="MainContainer/BottomToolBar/HostServer" to="." method="_on_HostServer_pressed"]
+[connection signal="pressed" from="MainContainer/BottomToolBar/JoinRoom" to="." method="_on_JoinRoom_pressed"]

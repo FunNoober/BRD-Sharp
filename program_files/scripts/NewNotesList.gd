@@ -19,6 +19,7 @@ func _ready() -> void:
 	var d = Directory.new()
 	if d.file_exists("user://" + name + ".brdnotes"):
 		var f = File.new()
+		f.open("user://" + name + ".brdnotes", f.READ)
 		var contents_as_string = f.get_as_text()
 		var contents_as_dictionary = parse_json(contents_as_string)
 		data_to_store = contents_as_dictionary
@@ -66,7 +67,6 @@ func save():
 	data_to_store.items_content_array = items_content_array
 	data_to_store.cur_index = cur_index
 	var f = File.new()
-	print(name)
 	f.open("user://" + name + ".brdnotes", f.WRITE)
 	f.store_string(JSON.print(data_to_store))
 	f.close()
