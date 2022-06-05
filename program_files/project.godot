@@ -15,10 +15,6 @@ run/main_scene="res://assets/scenes/Main.tscn"
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
 
-[autoload]
-
-ColorBlindFriendly="*res://ColorBlindFriendly.gd"
-
 [display]
 
 window/handheld/orientation="portrait"

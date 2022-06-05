@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/NewChatBoard.gd" type="Script" id=1]
+
+[node name="NewChatBoard" type="Tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="Contents" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Contents"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+split_offset = 300
+dragger_visibility = 2
+
+[node name="MessageArea" type="VBoxContainer" parent="Contents/HSplitContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MessagesLabel" type="RichTextLabel" parent="Contents/HSplitContainer/MessageArea"]
+margin_right = 1024.0
+margin_bottom = 572.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Contents/HSplitContainer/MessageArea"]
+margin_top = 576.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="AliasEdit" type="LineEdit" parent="Contents/HSplitContainer/MessageArea/HBoxContainer"]
+margin_right = 486.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "Alias"
+
+[node name="MessageContentsEdit" type="LineEdit" parent="Contents/HSplitContainer/MessageArea/HBoxContainer"]
+margin_left = 490.0
+margin_right = 977.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+placeholder_text = "Message Contents"
+
+[node name="SendButton" type="Button" parent="Contents/HSplitContainer/MessageArea/HBoxContainer"]
+margin_left = 981.0
+margin_right = 1024.0
+margin_bottom = 24.0
+text = "Send"
+
+[node name="UsersLabel" type="RichTextLabel" parent="Contents/HSplitContainer"]
+visible = false
+margin_left = 812.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="text_entered" from="Contents/HSplitContainer/MessageArea/HBoxContainer/MessageContentsEdit" to="." method="_on_MessageContentsEdit_text_entered"]
+[connection signal="pressed" from="Contents/HSplitContainer/MessageArea/HBoxContainer/SendButton" to="." method="_on_SendButton_pressed"]
