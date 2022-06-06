@@ -27,3 +27,4 @@ margin_bottom = 20.0
 text = "Delete"
 
 [connection signal="pressed" from="MoveItemButton" to="." method="_on_MoveItemButton_pressed"]
+[connection signal="pressed" from="DeleteItemButton" to="." method="_on_DeleteItemButton_pressed"]

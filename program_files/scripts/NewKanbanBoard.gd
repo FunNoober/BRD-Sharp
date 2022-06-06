@@ -23,7 +23,10 @@ remote func create_new_item(item_name, should_append, done_by_default):
 	nki.name = item_name
 	nki.get_node("ItemContentsButton").text = item_name
 	nki.data.contents = item_name
+	
 	nki.connect("move_request", self, "move_item")
+	nki.connect("delete_request", self, "delete_item")
+	
 	if done_by_default == false: todo_column.add_child(nki);
 	else: done_column.add_child(nki);
 	
@@ -36,6 +39,10 @@ remote func create_new_item(item_name, should_append, done_by_default):
 func move_item(done_state, object_name, index):
 	receive_item_move_request(done_state, object_name, index)
 	rpc("receive_item_move_request", done_state, object_name, index)
+	
+func delete_item(data, done_state, object_name):
+	handle_delete_request(data, done_state, object_name)
+	rpc("handle_delete_request", data, done_state, object_name)
 	
 remote func receive_item_move_request(done_state, object_name, index):
 	var todo_container = $Contents/Items/HSplitContainer/TodoScroll/VBoxContainer
@@ -51,6 +58,13 @@ remote func receive_item_move_request(done_state, object_name, index):
 	items[index-1].done_state = done_state
 	save()
 	
+remote func handle_delete_request(data, done_state, object_name):
+	items.erase(data)
+	if done_state == true:
+		get_node("Contents/Items/HSplitContainer/DoneScroll/VBoxContainer" + "/" + object_name).queue_free()
+	if done_state == false:
+		get_node("Contents/Items/HSplitContainer/TodoScroll/VBoxContainer" + "/" + object_name).queue_free()
+	save()
 
 func call_create_new_item():
 	create_new_item($Contents/Toolbar/NewKanbanItemNameEdit.text, true, false)
