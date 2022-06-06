@@ -20,6 +20,8 @@ func _ready() -> void:
 			create_new_item(boards[0][i], false, 0)
 		for i in range(len(boards[2])):
 			create_new_item(boards[2][i], false, 3)
+		for i in range(len(boards[1])):
+			create_new_item(boards[1][i], false, 1)
 		f.close()
 
 remote func create_new_item(new_item_name, should_save, type):
@@ -34,6 +36,12 @@ remote func create_new_item(new_item_name, should_save, type):
 		new_cb.name = new_item_name
 		$Contents/TabContainer.add_child(new_cb)
 		boards[2].append(new_cb.name)
+		if should_save: save();
+	if type == 1:
+		var new_todo_board = todo_board_prefab.instance()
+		new_todo_board.name = new_item_name
+		$Contents/TabContainer.add_child(new_todo_board)
+		boards[1].append(new_todo_board.name)
 		if should_save: save();
 
 func _on_BRDTypeEdit_item_selected(index: int) -> void:
