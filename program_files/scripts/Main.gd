@@ -1,11 +1,12 @@
 extends Control
 
 #Kanban, Todo, Chat
-var boards = [[], [], []]
+var boards = [[], [], [], []]
 
 onready var kanban_board_prefab = load("res://assets/kanban boards/NewKanbanBoard.tscn")
 onready var todo_board_prefab = load("res://assets/todo boards/NewTodoBoard.tscn")
 onready var chat_board_prefab = load("res://assets/chat boards/NewChatBoard.tscn")
+onready var note_board_prefab = load("res://assets/note boards/NewNoteBoard.tscn")
 
 var item_type : int
 
@@ -18,10 +19,12 @@ func _ready() -> void:
 		boards = contents_as_dictionary.boards
 		for i in range(len(boards[0])):
 			create_new_item(boards[0][i], false, 0)
-		for i in range(len(boards[2])):
-			create_new_item(boards[2][i], false, 3)
 		for i in range(len(boards[1])):
 			create_new_item(boards[1][i], false, 1)
+		for i in range(len(boards[2])):
+			create_new_item(boards[2][i], false, 3)
+		for i in range(len(boards[3])):
+			create_new_item(boards[3][i], false, 2)
 		f.close()
 
 remote func create_new_item(new_item_name, should_save, type):
@@ -32,18 +35,25 @@ remote func create_new_item(new_item_name, should_save, type):
 		new_kbp.connect("delete_request", self, "handle_deletion")
 		boards[0].append(new_kbp.name)
 		if should_save: save();
-	if type == 3:
-		var new_cb = chat_board_prefab.instance()
-		new_cb.name = new_item_name
-		$Contents/TabContainer.add_child(new_cb)
-		boards[2].append(new_cb.name)
-		if should_save: save();
 	if type == 1:
 		var new_todo_board = todo_board_prefab.instance()
 		new_todo_board.name = new_item_name
 		$Contents/TabContainer.add_child(new_todo_board)
 		new_todo_board.connect("delete_request", self, "handle_deletion")
 		boards[1].append(new_todo_board.name)
+		if should_save: save();
+	if type == 2:
+		var new_note_board = note_board_prefab.instance()
+		new_note_board.name = new_item_name
+		$Contents/TabContainer.add_child(new_note_board)
+		new_note_board.connect("delete_request", self, "handle_deletion")
+		boards[3].append(new_note_board.name)
+		if should_save: save()
+	if type == 3:
+		var new_cb = chat_board_prefab.instance()
+		new_cb.name = new_item_name
+		$Contents/TabContainer.add_child(new_cb)
+		boards[2].append(new_cb.name)
 		if should_save: save();
 
 func handle_deletion(i_name):
@@ -55,6 +65,7 @@ remote func delete(i_name):
 	boards[0].erase(i_name)
 	boards[1].erase(i_name)
 	boards[2].erase(i_name)
+	boards[3].erase(i_name)
 	save()
 
 func _on_BRDTypeEdit_item_selected(index: int) -> void:
