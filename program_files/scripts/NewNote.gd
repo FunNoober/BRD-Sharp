@@ -16,6 +16,5 @@ func _ready() -> void:
 func _on_DeleteButton_pressed() -> void:
 	emit_signal("delete_request", data, name)
 
-
 func _on_OpenLinkButton_pressed() -> void:
 	OS.shell_open(data.contents)

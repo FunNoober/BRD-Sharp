@@ -18,8 +18,18 @@ remote func create_note(should_append, contents):
 	var nn = new_note.instance()
 	nn.data.contents = contents
 	nn.name = contents
-	if should_append == true: items.append(nn.data)
+	nn.connect("delete_request", self, "handle_delete_request")
+	if should_append == true: items.append(nn.data.contents)
 	$Contents/Items/VBoxContainer.add_child(nn)
+	save()
+	
+func handle_delete_request(data, i_name):
+	delete_note(data, i_name)
+	rpc("delete_note", data, i_name)
+	
+remote func delete_note(data, i_name):
+	items.erase(data.contents)
+	get_node("Contents/Items/VBoxContainer" + "/" + i_name).queue_free()
 	save()
 	
 func _on_NoteContentsEdit_text_entered(new_text: String) -> void:
@@ -36,6 +46,7 @@ func save():
 	var data = {
 		"items" : items
 	}
+	print(data.items)
 	var f = File.new()
 	f.open("user://" + name + ".brdnotes", f.WRITE)
 	f.store_string(JSON.print(data))
