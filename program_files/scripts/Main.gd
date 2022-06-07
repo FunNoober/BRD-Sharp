@@ -29,6 +29,7 @@ remote func create_new_item(new_item_name, should_save, type):
 		var new_kbp = kanban_board_prefab.instance()
 		new_kbp.name = new_item_name
 		$Contents/TabContainer.add_child(new_kbp)
+		new_kbp.connect("delete_request", self, "handle_deletion")
 		boards[0].append(new_kbp.name)
 		if should_save: save();
 	if type == 3:
@@ -41,8 +42,20 @@ remote func create_new_item(new_item_name, should_save, type):
 		var new_todo_board = todo_board_prefab.instance()
 		new_todo_board.name = new_item_name
 		$Contents/TabContainer.add_child(new_todo_board)
+		new_todo_board.connect("delete_request", self, "handle_deletion")
 		boards[1].append(new_todo_board.name)
 		if should_save: save();
+
+func handle_deletion(i_name):
+	delete(i_name)
+	rpc("delete", i_name)
+
+remote func delete(i_name):
+	print(i_name)
+	boards[0].erase(i_name)
+	boards[1].erase(i_name)
+	boards[2].erase(i_name)
+	save()
 
 func _on_BRDTypeEdit_item_selected(index: int) -> void:
 	item_type = index

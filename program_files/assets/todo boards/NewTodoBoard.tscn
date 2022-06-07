@@ -53,3 +53,4 @@ text = "Delete BRD"
 
 [connection signal="text_entered" from="Contents/Toolbar/NewTodoContentsEdit" to="." method="_on_NewTodoContentsEdit_text_entered"]
 [connection signal="pressed" from="Contents/Toolbar/AddNewTodoItem" to="." method="_on_AddNewTodoItem_pressed"]
+[connection signal="pressed" from="Contents/DeleteBRDButton" to="." method="_on_DeleteBRDButton_pressed"]

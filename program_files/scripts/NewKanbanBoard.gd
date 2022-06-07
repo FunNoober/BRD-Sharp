@@ -9,6 +9,8 @@ var cur_index : int
 onready var done_column = get_node("Contents/Items/HSplitContainer/DoneScroll/VBoxContainer")
 onready var todo_column = get_node("Contents/Items/HSplitContainer/TodoScroll/VBoxContainer")
 
+signal delete_request(i_name)
+
 func _ready() -> void:
 	var f = File.new()
 	if f.file_exists("user://" + name + ".brd"):
@@ -93,3 +95,8 @@ func save():
 	f.open("user://" + name + ".brd", f.WRITE)
 	f.store_string(JSON.print(data))
 	f.close()
+
+
+func _on_DeleteBRDButton_pressed() -> void:
+	emit_signal("delete_request", name)
+	queue_free()

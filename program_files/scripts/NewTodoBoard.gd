@@ -4,6 +4,8 @@ onready var new_todo_item = load("res://assets/todo boards/NewTodoItem.tscn")
 
 var items = []
 
+signal delete_request(i_name)
+
 func _ready() -> void:
 	var f = File.new()
 	if f.file_exists("user://" + name + ".brdtodo"):
@@ -73,3 +75,7 @@ func save():
 	f.open("user://" + name + ".brdtodo", f.WRITE)
 	f.store_string(JSON.print(data))
 	f.close()
+
+func _on_DeleteBRDButton_pressed() -> void:
+	emit_signal("delete_request", name)
+	queue_free()

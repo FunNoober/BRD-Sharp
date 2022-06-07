@@ -83,3 +83,4 @@ text = "Delete BRD"
 [connection signal="text_entered" from="Contents/Toolbar/NewKanbanItemNameEdit" to="." method="_on_NewKanbanItemNameEdit_text_entered"]
 [connection signal="text_entered" from="Contents/Toolbar/NewKanbanItemDescriptionEdit" to="." method="_on_NewKanbanItemDescriptionEdit_text_entered"]
 [connection signal="pressed" from="Contents/Toolbar/AddKanbanItem" to="." method="_on_AddKanbanItem_pressed"]
+[connection signal="pressed" from="Contents/DeleteBRDButton" to="." method="_on_DeleteBRDButton_pressed"]
