@@ -11,6 +11,7 @@ func _ready() -> void:
 		items = parse_json(f.get_as_text()).items
 		for item in items:
 			var nti = create_new_item(item.contents, false)
+			nti.data = item
 			if item.done_status == true:
 				nti.modulate = Color(1,1,1,0.2)
 			else:
@@ -30,17 +31,23 @@ remote func create_new_item(item_contents = "", should_append = true):
 	save()
 	return nti
 
-func done_status_changed(data):
-	update_done_status(data)
-	rpc("update_done_status", data)
+func done_status_changed(data, i_name):
+	update_done_status(data, i_name)
+	rpc("update_done_status", data, i_name)
 	
 func delete_request_received(data, i_name):
 	delete_item(data, i_name)
 	rpc("delete_item", data, i_name)
 	
-remote func update_done_status(data):
+remote func update_done_status(data, i_name):
 	var index = items.find(data)
 	items[index].done_status = !data.done_status
+	var obj = $Contents/TodoItems/VBoxContainer.get_node(i_name)
+	obj.data.done_status = items[index].done_status
+	if obj.data.done_status == true:
+		obj.modulate = Color(1,1,1,0.2)
+	else:
+		obj.modulate = Color(1,1,1,1)
 	save()
 	
 remote func delete_item(data, i_name):

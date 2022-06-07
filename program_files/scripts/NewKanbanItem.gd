@@ -2,6 +2,7 @@ extends HBoxContainer
 
 var data = {
 	"contents" : "",
+	"description" : "",
 	"done_state" : false,
 	"index" : 0
 }
@@ -19,3 +20,7 @@ func _on_MoveItemButton_pressed() -> void:
 
 func _on_DeleteItemButton_pressed() -> void:
 	emit_signal("delete_request", data, data.done_state, name)
+
+func _on_ItemContentsButton_pressed() -> void:
+	$AcceptDialog.popup()
+	$AcceptDialog.dialog_text = data.description

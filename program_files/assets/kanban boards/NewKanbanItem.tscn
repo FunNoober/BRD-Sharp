@@ -26,5 +26,14 @@ margin_right = 1024.0
 margin_bottom = 20.0
 text = "Delete"
 
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+margin_left = 544.0
+margin_right = 1024.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 480, 120 )
+dialog_text = "Item description goes here"
+dialog_autowrap = true
+
+[connection signal="pressed" from="ItemContentsButton" to="." method="_on_ItemContentsButton_pressed"]
 [connection signal="pressed" from="MoveItemButton" to="." method="_on_MoveItemButton_pressed"]
 [connection signal="pressed" from="DeleteItemButton" to="." method="_on_DeleteItemButton_pressed"]

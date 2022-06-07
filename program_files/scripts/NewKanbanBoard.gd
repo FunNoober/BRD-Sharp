@@ -16,13 +16,15 @@ func _ready() -> void:
 		items = parse_json(f.get_as_text()).items
 		cur_index = parse_json(f.get_as_text()).cur_index
 		for i in range(len(items)):
-			create_new_item(items[i].contents, false, items[i].done_state)
+			var obj = create_new_item(items[i].contents, false, items[i].done_state, items[i].description)
+			obj.data = items[i]
 
-remote func create_new_item(item_name, should_append, done_by_default):
+remote func create_new_item(item_name, should_append, done_by_default, description):
 	var nki = new_kanban_item.instance()
 	nki.name = item_name
 	nki.get_node("ItemContentsButton").text = item_name
 	nki.data.contents = item_name
+	nki.data.description = description
 	
 	nki.connect("move_request", self, "move_item")
 	nki.connect("delete_request", self, "delete_item")
@@ -35,6 +37,7 @@ remote func create_new_item(item_name, should_append, done_by_default):
 		cur_index += 1
 		nki.data.index = cur_index
 	save()
+	return nki
 	
 func move_item(done_state, object_name, index):
 	receive_item_move_request(done_state, object_name, index)
@@ -67,9 +70,10 @@ remote func handle_delete_request(data, done_state, object_name):
 	save()
 
 func call_create_new_item():
-	create_new_item($Contents/Toolbar/NewKanbanItemNameEdit.text, true, false)
-	rpc("create_new_item", $Contents/Toolbar/NewKanbanItemNameEdit.text, true, false)
+	create_new_item($Contents/Toolbar/NewKanbanItemNameEdit.text, true, false, $Contents/Toolbar/NewKanbanItemDescriptionEdit.text)
+	rpc("create_new_item", $Contents/Toolbar/NewKanbanItemNameEdit.text, true, false, $Contents/Toolbar/NewKanbanItemDescriptionEdit.text)
 	$Contents/Toolbar/NewKanbanItemNameEdit.text = ""
+	$Contents/Toolbar/NewKanbanItemDescriptionEdit.text = ""
 
 func _on_NewKanbanItemNameEdit_text_entered(_new_text: String) -> void:
 	call_create_new_item()
