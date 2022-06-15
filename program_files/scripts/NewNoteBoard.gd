@@ -12,7 +12,7 @@ func _ready() -> void:
 		f.open("user://" + name + ".brdnotes", f.READ)
 		items = parse_json(f.get_as_text()).items
 		for item in items:
-			create_note(false, item.contents)
+			create_note(false, item)
 
 remote func create_note(should_append, contents):
 	var nn = new_note.instance()
