@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0d12bel81c5q"]
+
+[ext_resource type="Texture2D" uid="uid://ctcwcoryfbs81" path="res://icons/add-icon.png" id="1_1ieks"]
+[ext_resource type="Script" path="res://boards/board.gd" id="1_3ef0h"]
+
+[node name="board_margain" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_3ef0h")
+
+[node name="board_contents" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="new_card" type="HBoxContainer" parent="board_contents"]
+layout_mode = 2
+
+[node name="card_name" type="LineEdit" parent="board_contents/new_card"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Something I need to do"
+
+[node name="create_card" type="Button" parent="board_contents/new_card"]
+layout_mode = 2
+icon = ExtResource("1_1ieks")
+
+[node name="card_priority" type="OptionButton" parent="board_contents/new_card"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Low"
+popup/item_0/id = 0
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "High"
+popup/item_2/id = 2
+
+[node name="columns" type="HBoxContainer" parent="board_contents"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="todo_column_background" type="ColorRect" parent="board_contents/columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.25098)
+
+[node name="contents" type="VBoxContainer" parent="board_contents/columns/todo_column_background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="column_title" type="Label" parent="board_contents/columns/todo_column_background/contents"]
+layout_mode = 2
+text = "Todo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="scroll" type="ScrollContainer" parent="board_contents/columns/todo_column_background/contents"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="todo_column" type="VBoxContainer" parent="board_contents/columns/todo_column_background/contents/scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="done_column_background" type="ColorRect" parent="board_contents/columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.25098)
+
+[node name="contents" type="VBoxContainer" parent="board_contents/columns/done_column_background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="column_title" type="Label" parent="board_contents/columns/done_column_background/contents"]
+layout_mode = 2
+text = "Done"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="scroll" type="ScrollContainer" parent="board_contents/columns/done_column_background/contents"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="done_column" type="VBoxContainer" parent="board_contents/columns/done_column_background/contents/scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="delete_board_button" type="Button" parent="board_contents"]
+layout_mode = 2
+text = "Delete This Board"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 1
+size = Vector2i(345, 100)
+dialog_text = "Are you sure you want to delete this board"
+
+[connection signal="text_submitted" from="board_contents/new_card/card_name" to="." method="_on_card_name_text_submitted"]
+[connection signal="pressed" from="board_contents/new_card/create_card" to="." method="_on_create_card_pressed"]
+[connection signal="pressed" from="board_contents/delete_board_button" to="." method="_on_delete_board_button_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
