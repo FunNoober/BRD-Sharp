@@ -1,6 +1,6 @@
 # BRD-Sharp 4.0
 ## 📃 Summary
-BRD-Sharp is a downloadable, free and open source personal project management solution based around kanban boards.
+BRD-Sharp is a downloadable, free and open source personal project management solution based around kanban boards and built on-top of Godot 4.2.
 ## ⚖ License
 BRD-Sharp is a free and open source personal project management solution licensed under the MIT license.
 
